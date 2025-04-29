@@ -22,7 +22,7 @@
           "api-docs/webhooks",
           "api-docs/api_reference",
           {
-            "group": "Endpoints",
+            "group": "Endpoints Fix",
             "openapi": {
               "source": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
             }
