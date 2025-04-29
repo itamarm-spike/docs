@@ -9,31 +9,27 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "tabs": [
+    "groups": [
       {
-        "tab": "Guides",
-        "groups": [
+        "group": "Getting Started",
+        "pages": ["quickstart"]
+      },
+      {
+        "group": "Using via API",
+        "pages": [
+          "api-docs/authentication",
+          "api-docs/provider_integration",
+          "api-docs/webhooks",
+          "api-docs/api_reference",
           {
-            "group": "Getting Started",
-            "pages": ["quickstart"]
-          },
-          {
-            "group": "Using via API",
-            "pages": [
-              "api-docs/authentication",
-              "api-docs/provider_integration",
-              "api-docs/webhooks"
-            ]
-          },
-          {
-            "group": "Using via SDK",
-            "pages": ["sdk-docs/development"]
+            "group": "API Reference",
+            "openapi": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
           }
         ]
       },
       {
-        "tab": "API Reference",
-        "openapi": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
+        "group": "Using via SDK",
+        "pages": ["sdk-docs/development"]
       }
     ]
   },
