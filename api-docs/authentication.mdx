@@ -45,10 +45,12 @@ curl --location 'https://app-api.spikeapi.com/v3/auth/hmac' \
 ### Example Response
 
 ```json
-{ "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI5OTk5Iiwic3ViIjoiYXBwbGljYXRpb24tdXNlci1pZC0xMjMifQ.XnI1y4tkRjdiSeHwUqdmk9em-hTPojtMzbOU30nMd_Y"}
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI5OTk5Iiwic3ViIjoiYXBwbGljYXRpb24tdXNlci1pZC0xMjMifQ.XnI1y4tkRjdiSeHwUqdmk9em-hTPojtMzbOU30nMd_Y"
+}
 ```
 
-Include the **access_token** in the **Authorization** header for all API requests to Spike. The token should be prefixed with `Bearer`.**Authorization: Bearer \<access_token\>** .
+<Note>Include the **access_token** in the **Authorization** header for all API requests to Spike. The token should be prefixed with `Bearer`.**Authorization: Bearer \<access_token\>**</Note>
 
 The **application_user_id** must be consistent throughout the user's lifecycle. No pre-registration is required—users are valid after the first provider integration.
 
