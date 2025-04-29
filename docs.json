@@ -20,14 +20,14 @@
           {
             "group": "Using via API",
             "pages": [
-              "api/authentication",
-              "api/provider_integration",
-              "api/webhooks"
+              "api-docs/authentication",
+              "api-docs/provider_integration",
+              "api-docs/webhooks"
             ]
           },
           {
             "group": "Using via SDK",
-            "pages": ["sdk/development"]
+            "pages": ["sdk-docs/development"]
           }
         ]
       },
