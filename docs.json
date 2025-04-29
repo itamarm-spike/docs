@@ -3,8 +3,8 @@
     "theme": "willow",
     "name": "SpikeAPI",
     "colors": {
-        "primary": "#16A34A",
-        "light": "#07C983",
+        "primary": "#003049",
+        "light": "#669bbc",
         "dark": "#15803D"
     },
     "favicon": "/favicon.svg",
