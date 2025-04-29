@@ -15,19 +15,18 @@
         "pages": ["quickstart"]
       },
       {
-        "group": "Using via API 2",
+        "group": "Using via API",
         "pages": [
           "api-docs/authentication",
           "api-docs/provider_integration",
-          "api-docs/webhooks",
-          "api-docs/api_reference",
-          {
-            "group": "Endpoints Fix",
-            "openapi": {
-              "source": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
-            }
-          }
+          "api-docs/webhooks"
         ]
+      },
+      {
+        "group": "API Endpoints",
+        "openapi": {
+          "source": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
+        }
       },
       {
         "group": "Using via SDK",
