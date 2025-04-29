@@ -1,61 +1,60 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "willo",
-  "name": "SpikeAPI",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": ["introduction", "quickstart", "development"]
-          },
-          {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
-          }
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "willow",
+    "name": "SpikeAPI",
+    "colors": {
+        "primary": "#16A34A",
+        "light": "#07C983",
+        "dark": "#15803D"
+    },
+    "favicon": "/favicon.svg",
+    "navigation": {
+        "tabs": [
+            {
+                "tab": "Guides",
+                "groups": [
+                    {
+                        "group": "Get Started",
+                        "pages": [
+                            "introduction",
+                            "quickstart",
+                            "development"
+                        ]
+                    },
+                    {
+                        "group": "Essentials",
+                        "pages": [
+                            "essentials/markdown",
+                            "essentials/code",
+                            "essentials/images",
+                            "essentials/settings",
+                            "essentials/navigation",
+                            "essentials/reusable-snippets"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "API Reference",
+                "openapi": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
+            }
         ]
-      },
-      {
-        "tab": "API Reference",
-        "openapi": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
-      },
-    ],
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@spikeapi.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Client Console",
-      "href": "https://admin.spikeapi.com/"
+    },
+    "logo": {
+        "light": "/logo/light.svg",
+        "dark": "/logo/dark.svg"
+    },
+    "navbar": {
+        "links": [
+            {
+                "label": "Support",
+                "href": "mailto:hi@spikeapi.com"
+            }
+        ],
+        "primary": {
+            "type": "button",
+            "label": "Client Console",
+            "href": "https://admin.spikeapi.com/"
+        }
     }
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/spikeapi",
-    }
-  }
 }

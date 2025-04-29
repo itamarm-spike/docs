@@ -1,0 +1,59 @@
+---
+title: "Authentication"
+description: "Authentication process"
+---
+
+## User Authentication via HMAC – Spike API
+
+Spike API authenticates end users using **HMAC signatures** generated with a **shared secret key**. You can obtain this key from the **administrative console**.
+
+Spike API authenticates end users using HMAC signatures generated with a shared key. You can obtain this key from the administrative console.
+
+## Step 1: Generate an HMAC Signature
+
+Use the secret key from your console to generate an HMAC-SHA256 signature for each user.
+
+@TODO add screenshow of where to copy the key from
+
+@TODO include code examples here
+
+## Step 2: Exchange Signature for Access Token
+
+Send the generated signature to the following endpoint to authorize the user and obtain an access token:
+
+### Required Parameters
+
+- **application_id **The ID of the application for which you are requesting the access token.
+- **application_user_id **The unique ID of the user in your system. This is the only identifier needed to reference the use
+  - Maximum 1-128 alphanumeric characters
+  - May include these special characters: - \_ .
+- **signature **The HMAC signature generated to verify the user’s authenticity.
+
+### Example Request
+
+```bash
+curl --location 'https://app-api.spikeapi.com/v3/auth/hmac' \
+    --header 'Content-Type: application/json' \
+    --header 'Accept: application/json' \
+    --data '{
+        "application_id": 9999,
+        "application_user_id": "my_application_user_123",
+        "signature": "string"
+    }'
+```
+
+### Example Response
+
+```json
+{ "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI5OTk5Iiwic3ViIjoiYXBwbGljYXRpb24tdXNlci1pZC0xMjMifQ.XnI1y4tkRjdiSeHwUqdmk9em-hTPojtMzbOU30nMd_Y"}
+```
+
+Include the **access_token** in the **Authorization** header for all API requests to Spike. The token should be prefixed with `Bearer`.**Authorization: Bearer \<access_token\>** .
+
+The **application_user_id** must be consistent throughout the user's lifecycle. No pre-registration is required—users are valid after the first provider integration.
+
+## Step 3: Store and Use the Access Token
+
+On successful authentication, the API will return an **access token** in the response. Store this token securely and include it in the Authorization header for all subsequent API calls:
+
+`Authorization: Bearer <access_token>`
