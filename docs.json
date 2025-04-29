@@ -20,18 +20,19 @@
           "api-docs/authentication",
           "api-docs/provider_integration",
           "api-docs/webhooks",
-          {
-            "group": "API Reference",
-            "openapi": {
-              "source": "api-reference/openapi.json",
-              "directory": "api-reference"
-            }
-          }
+          "api-docs/data_retrival"
         ]
       },
       {
         "group": "Using via SDK",
         "pages": ["sdk-docs/development"]
+      },
+      {
+        "group": "API Reference",
+        "openapi": {
+          "source": "api-reference/openapi.json",
+          "directory": "api-reference"
+        }
       }
     ]
   },
