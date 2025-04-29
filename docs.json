@@ -15,7 +15,7 @@
         "pages": ["quickstart"]
       },
       {
-        "group": "Using via API",
+        "group": "Using via API 2",
         "pages": [
           "api-docs/authentication",
           "api-docs/provider_integration",
