@@ -25,7 +25,8 @@
       {
         "group": "API Endpoints",
         "openapi": {
-          "source": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
+          "source": "openapi.json",
+          "directory": "api-reference"
         }
       },
       {
