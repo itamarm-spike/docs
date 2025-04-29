@@ -1,57 +1,57 @@
 {
-    "$schema": "https://mintlify.com/docs.json",
-    "theme": "willow",
-    "name": "SpikeAPI",
-    "colors": {
-        "primary": "#003049",
-        "light": "#669bbc",
-        "dark": "#15803D"
-    },
-    "favicon": "/favicon.svg",
-    "navigation": {
-        "tabs": [
-            {
-                "tab": "Guides",
-                "groups": [
-                    {
-                        "group": "Using via API",
-                        "pages": [
-                            "authentication",
-                            "provider_integration",
-                            "webhooks"
-                        ]
-                    },
-                    {
-                        "group": "Using via SDK",
-                        "pages": [
-                            "authentication",
-                            "provider_integration",
-                            "webhooks"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "API Reference",
-                "openapi": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
-            }
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "willow",
+  "name": "SpikeAPI",
+  "colors": {
+    "primary": "#003049",
+    "light": "#669bbc",
+    "dark": "#15803D"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": ["quickstart"]
+          },
+          {
+            "group": "Using via API",
+            "pages": [
+              "api/authentication",
+              "api/provider_integration",
+              "api/webhooks"
+            ]
+          },
+          {
+            "group": "Using via SDK",
+            "pages": ["sdk/development"]
+          }
         ]
-    },
-    "logo": {
-        "light": "https://spikeapi.com/wp-content/uploads/2021/11/spike-logo-n.svg",
-        "dark": "https://spikeapi.com/wp-content/uploads/2021/11/spike-logo-n.svg"
-    },
-    "navbar": {
-        "links": [
-            {
-                "label": "Support",
-                "href": "mailto:hi@spikeapi.com"
-            }
-        ],
-        "primary": {
-            "type": "button",
-            "label": "Client Console",
-            "href": "https://admin.spikeapi.com/"
-        }
+      },
+      {
+        "tab": "API Reference",
+        "openapi": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
+      }
+    ]
+  },
+  "logo": {
+    "light": "https://spikeapi.com/wp-content/uploads/2021/11/spike-logo-n.svg",
+    "dark": "https://spikeapi.com/wp-content/uploads/2021/11/spike-logo-n.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:hi@spikeapi.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Client Console",
+      "href": "https://admin.spikeapi.com/"
     }
+  }
 }
