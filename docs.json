@@ -14,10 +14,19 @@
                 "tab": "Guides",
                 "groups": [
                     {
-                        "group": "Get Started",
+                        "group": "Using via API",
                         "pages": [
-                            "introduction",
-                            "integration"
+                            "authentication",
+                            "provider_integration",
+                            "webhooks"
+                        ]
+                    },
+                    {
+                        "group": "Using via SDK",
+                        "pages": [
+                            "authentication",
+                            "provider_integration",
+                            "webhooks"
                         ]
                     }
                 ]

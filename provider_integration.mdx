@@ -1,0 +1,34 @@
+---
+title: "Provider Integration"
+description: "Integration with providers"
+---
+
+Some providers (e.g., Garmin, Fitbit) require the user to grant consent before Spike API can access their data. Redirect the user to the provider's consent page using a URL obtained via the API
+
+## Obtain Redirect URL
+
+### Query arguments
+
+- (Optional) **redirect_uri** URI to redirect the end user after integration is complete, domain must be **whitelisted** in the admin console
+- (Optional) **state** an arbitrary string that would be returned to you after integration is complete
+
+### Example Request
+
+```bash
+curl -X GET https://app-api.spikeapi.com/v3/providers/fitbit/integration/init_url -H 'Authorization: Bearer <access_token>
+```
+
+### Example Response
+
+```json
+{
+    "provider_slug": "fitbit",
+    "path": "https://app-api.spikeapi.com/v3/providers/fitbit/integration/init/ic/la54yZgBJYlokLDHjh_NRpR6HOfFxkGKwEdRWL93gE0DnqBBqGded5SIcdZVAEdLDO-bGYheFBxZly9Q"
+}
+```
+
+## Redirect the User
+
+Redirect the user to the **path** URL provided in the response. This allows them to authorize data access. Once the user is integrated they would be redirected back to your application either using the default redirect URL or using the **redirect_uri** provided in your request to the API
+
+@TODO screenshot of redirect URL and redirect default from console
