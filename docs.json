@@ -20,10 +20,7 @@
           "api-docs/authentication",
           "api-docs/provider_integration",
           "api-docs/webhooks"
-        ]
-      },
-      {
-        "group": "API Endpoints",
+        ],
         "openapi": {
           "source": "api-reference/openapi.json",
           "directory": "api-reference"
