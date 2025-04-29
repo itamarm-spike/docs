@@ -22,8 +22,10 @@
           "api-docs/webhooks",
           "api-docs/api_reference",
           {
-            "group": "API Reference",
-            "openapi": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
+            "group": "Endpoints",
+            "openapi": {
+              "source": "https://app-api.stage.spikeapi.com/v3/openapi.yaml"
+            }
           }
         ]
       },
