@@ -17,10 +17,14 @@
       {
         "group": "Using via API",
         "pages": [
+          "api-docs/overview",
           "api-docs/authentication",
           "api-docs/provider_integration",
           "api-docs/webhooks",
-          "api-docs/data_retrival"
+          "api-docs/statistics",
+          "api-docs/sleep",
+          "api-docs/workout",
+          "api-docs/provider_records"
         ]
       },
       {

@@ -1,0 +1,28 @@
+# Spike API Overview
+
+Spike API provides a seamless way to integrate user data from various providers like Garmin and Fitbit into your application. Here's a quick guide to understanding the flow of using the Spike RESTful API:
+
+1. **Authentication**
+
+   - **User Authentication via HMAC**
+     - **Generate HMAC Signature**: Use a shared secret key from the admin console to create an HMAC-SHA256 signature for each user. [Learn more about generating HMAC signatures](/api-docs/authentication).
+     - **Exchange Signature for Access Token**: Send the signature to the Spike API endpoint to obtain an access token. This token is used to authenticate API requests. [Learn more about exchanging signatures for access tokens](/api-docs/authentication).
+
+2. **Provider Integration**
+
+   - **Obtain Redirect URL**: Some providers require user consent. Use the API to get a URL to redirect users for consent. [Learn more about obtaining redirect URLs](/api-docs/provider_integration).
+   - **Redirect the User**: Direct users to the provided URL to authorize data access. After integration, users are redirected back to your application. [Learn more about redirecting users](/api-docs/provider_integration).
+
+3. **Webhooks**
+
+   - **Configure Webhook Endpoint**: Set up an endpoint to receive data updates from providers. Ensure your endpoint responds with HTTP 200 to acknowledge receipt. [Learn more about configuring webhook endpoints](/api-docs/webhooks).
+   - **Handle Webhook Events**: Webhook events include data updates, integration status changes, and more. Each event is signed with an HMAC-SHA256 signature for verification. [Learn more about handling webhook events](/api-docs/webhooks).
+
+4. **Data Retrieval Using Queries**
+
+   Spike API offers multiple endpoints for data retrieval, allowing you to access a wide range of user data. For detailed information on querying data, refer to the following documentation:
+
+   - [Statistics API documentation](/api-docs/statistics)
+   - [Sleep API documentation](/api-docs/sleep)
+   - [Workout API documentation](/api-docs/workout)
+   - [Provider Records API documentation](/api-docs/provider_records)
