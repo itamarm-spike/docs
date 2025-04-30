@@ -61,4 +61,378 @@ To verify authenticity:
 
 @TODO screenshot of where to obtain the key
 
-@TODO code examples on how to verify the body
+## Code Examples
+
+### Go
+
+```go
+package main
+
+import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"time"
+)
+
+// PushEvent represents a webhook event from the health data provider
+const hmacKey = "HMAC_KEY_FROM_ADMIN_CONSOLE"
+
+type PushEvent struct {
+	ApplicationUserID     string    `json:"application_user_id"`      // ID of the application user
+	Timestamp             time.Time `json:"timestamp"`                // Event timestamp
+	EventType             string    `json:"event_type"`               // Type of event
+	Metrics               []string  `json:"metrics"`                  // List of metrics
+	ActivityTypes         []string  `json:"activity_types"`           // List of activity types
+	ProviderSlug          string    `json:"provider_slug"`            // Provider identifier
+	EarliestRecordStartAt time.Time `json:"earliest_record_start_at"` // Start of data range
+	LatestRecordEndAt     time.Time `json:"latest_record_end_at"`     // End of data range
+}
+
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		// Verify HMAC signature
+		signature := r.Header.Get("X-Body-Signature")
+		if signature == "" {
+			http.Error(w, "Missing signature", http.StatusBadRequest)
+			return
+		}
+
+		// Read and verify request body
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Failed to read body", http.StatusInternalServerError)
+			return
+		}
+
+		// Calculate HMAC
+		hm := hmac.New(sha256.New, []byte(hmacKey))
+		hm.Write(body)
+		if signature != hex.EncodeToString(hm.Sum(nil)) {
+			http.Error(w, "Invalid signature", http.StatusUnauthorized)
+			return
+		}
+
+		// Parse events
+		var events []PushEvent
+		if err := json.Unmarshal(body, &events); err != nil {
+			http.Error(w, "Invalid JSON", http.StatusBadRequest)
+			return
+		}
+
+		// Process events
+		for _, event := range events {
+			fmt.Printf("Received event: %+v\n", event)
+		}
+
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("OK"))
+	})
+
+	fmt.Println("Starting server on port 8000")
+	http.ListenAndServe(":8000", nil)
+}
+```
+
+### JavaScript
+
+```javascript
+const crypto = require("crypto");
+
+const HMAC_KEY = "HMAC_KEY_FROM_ADMIN_CONSOLE";
+
+class PushEvent {
+  constructor(data) {
+    this.application_user_id = data.application_user_id;
+    this.timestamp = new Date(data.timestamp);
+    this.event_type = data.event_type;
+    this.metrics = data.metrics;
+    this.activity_types = data.activity_types;
+    this.provider_slug = data.provider_slug;
+    this.earliest_record_start_at = new Date(data.earliest_record_start_at);
+    this.latest_record_end_at = new Date(data.latest_record_end_at);
+  }
+}
+
+const server = require("http").createServer((req, res) => {
+  if (req.method !== "POST") {
+    res.statusCode = 405;
+    res.end("Method not allowed");
+    return;
+  }
+
+  let body = "";
+  req.on("data", (chunk) => (body += chunk));
+  req.on("end", () => {
+    // Verify signature
+    const signature = req.headers["x-body-signature"];
+    if (!signature) {
+      res.statusCode = 400;
+      res.end("Missing signature");
+      return;
+    }
+
+    // Calculate HMAC
+    const hmac = crypto.createHmac("sha256", HMAC_KEY);
+    hmac.update(body);
+    if (signature !== hmac.digest("hex")) {
+      res.statusCode = 401;
+      res.end("Invalid signature");
+      return;
+    }
+
+    // Parse events
+    let events = JSON.parse(body).map((data) => new PushEvent(data));
+
+    // Process events
+    for (const event of events) {
+      console.log("Received event:", event);
+    }
+
+    res.statusCode = 200;
+    res.end("OK");
+  });
+});
+
+server.listen(8000);
+```
+
+### PHP
+
+```php
+<?php
+
+class PushEvent {
+    public string $application_user_id;
+    public DateTime $timestamp;
+    public string $event_type;
+    public array $metrics;
+    public array $activity_types;
+    public string $provider_slug;
+    public DateTime $earliest_record_start_at;
+    public DateTime $latest_record_end_at;
+}
+
+const HMAC_KEY = 'HMAC_KEY_FROM_ADMIN_CONSOLE';
+
+function handleRequest() {
+    // Verify HMAC signature
+    $signature = $_SERVER['HTTP_X_BODY_SIGNATURE'] ?? '';
+    if (empty($signature)) {
+        http_response_code(400);
+        echo 'Missing signature';
+        return;
+    }
+
+    // Read and verify request body
+    $body = file_get_contents('php://input');
+    if ($body === false) {
+        http_response_code(500);
+        echo 'Failed to read body';
+        return;
+    }
+
+    // Calculate HMAC
+    $hmac = hash_hmac('sha256', $body, HMAC_KEY);
+    if ($signature !== $hmac) {
+        http_response_code(401);
+        echo 'Invalid signature';
+        return;
+    }
+
+    // Parse events
+    $events = json_decode($body, true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        http_response_code(400);
+        echo 'Invalid JSON';
+        return;
+    }
+
+    // Process events
+    foreach ($events as $eventData) {
+        $event = new PushEvent();
+        $event->application_user_id = $eventData['application_user_id'];
+        $event->timestamp = new DateTime($eventData['timestamp']);
+        $event->event_type = $eventData['event_type'];
+        $event->metrics = $eventData['metrics'];
+        $event->activity_types = $eventData['activity_types'];
+        $event->provider_slug = $eventData['provider_slug'];
+        $event->earliest_record_start_at = new DateTime($eventData['earliest_record_start_at']);
+        $event->latest_record_end_at = new DateTime($eventData['latest_record_end_at']);
+
+        echo "Received event: " . print_r($event, true) . "\n";
+    }
+
+    http_response_code(200);
+    echo 'OK';
+}
+
+// Handle the request
+handleRequest();
+```
+
+### Python
+
+```python
+import hmac
+import hashlib
+import json
+from datetime import datetime
+from http.server import HTTPServer, BaseHTTPRequestHandler
+from typing import List, Optional
+
+
+class PushEvent:
+    """Represents a health data push event from a provider."""
+    def __init__(self, data: dict):
+        self.application_user_id: str = data['application_user_id']
+        self.timestamp: datetime = datetime.fromisoformat(data['timestamp'])
+        self.event_type: str = data['event_type']
+        self.metrics: List[str] = data['metrics']
+        self.activity_types: List[str] = data['activity_types']
+        self.provider_slug: str = data['provider_slug']
+        self.earliest_record_start_at: datetime = datetime.fromisoformat(data['earliest_record_start_at'])
+        self.latest_record_end_at: datetime = datetime.fromisoformat(data['latest_record_end_at'])
+
+
+class RequestHandler(BaseHTTPRequestHandler):
+    """Handles incoming webhook requests with HMAC verification."""
+
+    HMAC_KEY = "HMAC_KEY_FROM_ADMIN_CONSOLE"
+
+    def _verify_signature(self, body: bytes, signature: Optional[str]) -> bool:
+        """Verifies the HMAC signature of the request body."""
+        if not signature:
+            return False
+        h = hmac.new(self.HMAC_KEY.encode(), body, hashlib.sha256)
+        return signature == h.hexdigest()
+
+    def do_POST(self):
+        """Handles POST requests with webhook events."""
+        # Read request body
+        content_length = int(self.headers.get('Content-Length', 0))
+        body = self.rfile.read(content_length)
+
+        # Verify signature
+        if not self._verify_signature(body, self.headers.get("X-Body-Signature")):
+            self.send_error(401, "Invalid signature")
+            return
+
+        # Parse and process events
+        try:
+            events = [PushEvent(data) for data in json.loads(body)]
+            for event in events:
+                print(f"Received event: {event.__dict__}")
+        except (json.JSONDecodeError, KeyError, ValueError):
+            self.send_error(400, "Invalid JSON")
+            return
+
+        # Send success response
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+
+
+def main():
+    """Starts the HTTP server."""
+    server = HTTPServer(('', 8000), RequestHandler)
+    server.serve_forever()
+
+
+if __name__ == "__main__":
+    main()
+```
+
+### TypeScript
+
+```typescript
+import { createHmac } from "crypto";
+import { createServer, IncomingMessage, ServerResponse } from "http";
+
+// Configuration
+const HMAC_KEY = "HMAC_KEY_FROM_ADMIN_CONSOLE";
+const PORT = 8000;
+
+// Type definitions
+interface PushEvent {
+  application_user_id: string;
+  timestamp: Date;
+  event_type: string;
+  metrics: string[];
+  activity_types: string[];
+  provider_slug: string;
+  earliest_record_start_at: Date;
+  latest_record_end_at: Date;
+}
+
+// Helper functions
+const verifySignature = (
+  body: string,
+  signature: string | undefined
+): boolean => {
+  if (!signature) return false;
+  const hmac = createHmac("sha256", HMAC_KEY);
+  hmac.update(body);
+  return signature === hmac.digest("hex");
+};
+
+const parseEvents = (body: string): PushEvent[] => {
+  return JSON.parse(body).map((data: any) => ({
+    ...data,
+    timestamp: new Date(data.timestamp),
+    earliest_record_start_at: new Date(data.earliest_record_start_at),
+    latest_record_end_at: new Date(data.latest_record_end_at),
+  }));
+};
+
+// Server setup
+const server = createServer((req: IncomingMessage, res: ServerResponse) => {
+  // Only accept POST requests
+  if (req.method !== "POST") {
+    res.statusCode = 405;
+    res.end("Method not allowed");
+    return;
+  }
+
+  // Collect request body
+  let body = "";
+  req.on("data", (chunk) => (body += chunk));
+
+  req.on("end", () => {
+    try {
+      // Verify request signature
+      if (
+        !verifySignature(
+          body,
+          req.headers["x-body-signature"] as string | undefined
+        )
+      ) {
+        res.statusCode = 401;
+        res.end("Invalid signature");
+        return;
+      }
+
+      // Parse and process events
+      const events = parseEvents(body);
+      events.forEach((event) => console.log("Received event:", event));
+
+      // Send success response
+      res.statusCode = 200;
+      res.end("OK");
+    } catch (error) {
+      // Handle parsing errors
+      res.statusCode = 400;
+      res.end("Invalid request");
+    }
+  });
+});
+
+// Start server
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+```
