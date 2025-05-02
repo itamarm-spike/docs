@@ -42,8 +42,8 @@
         }
       },
       {
-        "group": "Supported Providers",
-        "pages": ["provider_matrix"]
+        "group": "Support Matrixes",
+        "pages": ["provider_matrix", "metrics_matrix"]
       }
     ]
   },
