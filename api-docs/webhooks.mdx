@@ -63,7 +63,7 @@ To verify authenticity:
 
 ## Code Examples
 
-### Go
+<CodeGroup>
 
 ```go
 package main
@@ -138,9 +138,7 @@ func main() {
 }
 ```
 
-### JavaScript
-
-```javascript
+```javascript webhook.js
 const crypto = require("crypto");
 
 const HMAC_KEY = "HMAC_KEY_FROM_ADMIN_CONSOLE";
@@ -201,9 +199,7 @@ const server = require("http").createServer((req, res) => {
 server.listen(8000);
 ```
 
-### PHP
-
-```php
+```php webhook.php
 <?php
 
 class PushEvent {
@@ -275,9 +271,7 @@ function handleRequest() {
 handleRequest();
 ```
 
-### Python
-
-```python
+```python webhook.py
 import hmac
 import hashlib
 import json
@@ -347,9 +341,7 @@ if __name__ == "__main__":
     main()
 ```
 
-### TypeScript
-
-```typescript
+```typescript webhook.ts
 import { createHmac } from "crypto";
 import { createServer, IncomingMessage, ServerResponse } from "http";
 
@@ -436,3 +428,5 @@ server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 ```
+
+</CodeGroup>

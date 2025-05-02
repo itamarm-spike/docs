@@ -37,6 +37,10 @@
           "source": "api-reference/openapi.json",
           "directory": "api-reference"
         }
+      },
+      {
+        "group": "Supported Providers",
+        "pages": ["provider_matrix"]
       }
     ]
   },

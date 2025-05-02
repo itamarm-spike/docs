@@ -26,3 +26,15 @@ Spike API provides a seamless way to integrate user data from various providers 
    - [Sleep API documentation](/api-docs/sleep)
    - [Workout API documentation](/api-docs/workout)
    - [Provider Records API documentation](/api-docs/provider_records)
+
+```mermaid
+graph TD;
+    A[Start] --> B[Generate HMAC Signature];
+    B --> C[Exchange Signature for Access Token];
+    C --> D[Obtain Redirect URL];
+    D --> E[Redirect the User];
+    E --> F[Configure Webhook Endpoint];
+    F --> G[Handle Webhook Events];
+    G --> H[Data Retrieval Using Queries];
+    H --> I[End];
+```
