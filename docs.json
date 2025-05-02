@@ -1,13 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "willow",
-  "name": "SpikeAPI",
   "colors": {
     "primary": "#003049",
     "light": "#669bbc",
     "dark": "#15803D"
   },
+  "name": "SpikeAPI",
   "favicon": "/favicon.svg",
+  "appearance": {
+    "default": "light"
+  },
   "navigation": {
     "groups": [
       {
