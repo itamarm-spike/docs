@@ -1,8 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
+  "theme": "mint",
   "colors": {
-    "primary": "#003049",
+    "primary": "#1B2836",
     "light": "#669bbc",
     "dark": "#15803D"
   },
@@ -42,8 +42,13 @@
         }
       },
       {
-        "group": "Support Matrixes",
-        "pages": ["provider_matrix", "metrics_matrix"]
+        "group": "Types and Definitions",
+        "pages": [
+          "provider_matrix",
+          "metrics_matrix",
+          "activity_matrix",
+          "statistics_matrix"
+        ]
       }
     ]
   },

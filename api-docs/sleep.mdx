@@ -1,4 +1,102 @@
 ---
-title: "Query Sleep"
-description: "Statistics Types and Calculation"
+title: "Query Sleep API"
+description: "API Documentation for Sleep Query Endpoints"
 ---
+
+This document provides an overview of the Sleep Query API, detailing the available endpoints, input and output types, and processing logic.
+
+### API Endpoints
+
+The Sleep Query API provides the following endpoints:
+
+- **List Sleep Activities**: Retrieve a list of sleep activities for a user.
+- **Get Sleep Activity by ID**: Retrieve a specific sleep activity by its ID.
+
+#### List Sleep Activities
+
+**Endpoint**: `GET /sleeps`
+
+**Description**: List sleep activities for a user.
+
+<ParamField body="include_stages" type="boolean" required>
+  Include sleep stages in the response.
+</ParamField>
+
+<ParamField body="include_samples" type="boolean" required>
+  Include sleep samples in the response.
+</ParamField>
+
+
+**Response**
+
+<ResponseField name="sleeps" type="array" required>
+  List of sleep activities.
+</ResponseField>
+
+
+#### Get Sleep Activity by ID
+
+**Endpoint**: `GET /sleeps/{sleep_id}`
+
+**Description**: Get a sleep activity by ID.
+
+<ParamField body="sleep_id" type="string" required>
+  The ID of the sleep activity.
+</ParamField>
+
+<ParamField body="include_stages" type="boolean" required>
+  Include sleep stages in the response.
+</ParamField>
+
+<ParamField body="include_samples" type="boolean" required>
+  Include sleep samples in the response.
+</ParamField>
+
+**Response**
+
+<ResponseField name="sleep_id" type="string" required>
+  The ID of the sleep activity.
+</ResponseField>
+
+<ResponseField name="stages" type="array" required>
+  List of sleep stages.
+</ResponseField>
+
+<ResponseField name="samples" type="object">
+  Sleep samples.
+</ResponseField>
+
+### Example Request
+
+```json Request
+{
+  "include_stages": true,
+  "include_samples": false
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "sleeps": [
+    {
+      "sleep_id": "12345",
+      "score": 85,
+      "stages": [
+        {
+          "stage": "deep",
+          "duration": 3600000
+        }
+      ],
+      "samples": null
+    }
+  ]
+}
+```
+
+<Note>
+  For more detailed use, please refer to our [API reference](/api-reference/query-sleep)
+</Note>

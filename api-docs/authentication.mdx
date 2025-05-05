@@ -15,21 +15,83 @@ Use the secret key from your console to generate an HMAC-SHA256 signature for ea
 
 @TODO add screenshow of where to copy the key from
 
-@TODO include code examples here
+<CodeGroup>
+
+```python [Python]
+import hmac
+import hashlib
+
+# Example: sign_user("my_application_user_123")
+def sign_user(user_id: str) -> str:
+    hmac_key = b"HMAC_KEY_FROM_ADMIN_CONSOLE"
+    h = hmac.new(hmac_key, user_id.encode(), hashlib.sha256)
+    return h.hexdigest()
+```
+
+```javascript [JavaScript]
+const crypto = require("crypto");
+
+// Example: signUser("my_application_user_123")
+function signUser(userId) {
+  const hmacKey = "HMAC_KEY_FROM_ADMIN_CONSOLE";
+  const hmac = crypto.createHmac("sha256", hmacKey);
+  hmac.update(userId);
+  return hmac.digest("hex");
+}
+```
+
+```go [Go]
+import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
+)
+
+// Example: signUser("my_application_user_123")
+func signUser(userID string) (string, error) {
+	m := hmac.New(sha256.New, []byte("HMAC_KEY_FROM_ADMIN_CONSOLE"))
+	_, err := m.Write([]byte(userID))
+	if err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(m.Sum(nil)), nil
+}
+```
+
+```php [PHP]
+<?php
+
+// Example: signUser("my_application_user_123")
+function signUser($userId) {
+    $hmacKey = "HMAC_KEY_FROM_ADMIN_CONSOLE";
+    $hmac = hash_hmac('sha256', $userId, $hmacKey, false);
+    return $hmac;
+}
+```
+
+</CodeGroup>
 
 ## Step 2: Exchange Signature for Access Token
 
 Send the generated signature to the following endpoint to authorize the user and obtain an access token:
 
-### Required Parameters
+### Request
 
-- **application_id **The ID of the application for which you are requesting the access token.
-- **application_user_id** The unique ID of the user in your system. This is the only identifier needed to reference the use
-  - Maximum 1-128 alphanumeric characters
-  - May include these special characters: - \_ .
-- **signature** The HMAC signature generated to verify the user’s authenticity.
+<ParamField body="application_id" type="string" required>
+  The ID of the application for which you are requesting the access token.
+</ParamField>
 
-### Example Request
+<ParamField body="application_user_id" type="string" required>
+  The unique ID of the user in your system. This is the only identifier needed
+  to reference the user. Maximum 1-128 alphanumeric characters. May include
+  these special characters: - _ .
+</ParamField>
+
+<ParamField body="signature" type="string" required>
+  The HMAC signature generated to verify the user’s authenticity.
+</ParamField>
+
+#### Example Request
 
 ```bash
 curl --location 'https://app-api.spikeapi.com/v3/auth/hmac' \
@@ -42,15 +104,21 @@ curl --location 'https://app-api.spikeapi.com/v3/auth/hmac' \
     }'
 ```
 
-### Example Response
+### Response
+
+<ResponseField name="access_token" type="string" required>
+  The access token for the user. Must be consistent throughout the user's
+  lifecycle. No pre-registration is required—users are valid after the first
+  provider integration.
+</ResponseField>
+
+#### Example Response
 
 ```json
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI5OTk5Iiwic3ViIjoiYXBwbGljYXRpb24tdXNlci1pZC0xMjMifQ.XnI1y4tkRjdiSeHwUqdmk9em-hTPojtMzbOU30nMd_Y"
 }
 ```
-
-The **application_user_id** must be consistent throughout the user's lifecycle. No pre-registration is required—users are valid after the first provider integration.
 
 ## Step 3: Store and Use the Access Token
 

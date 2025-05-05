@@ -5,31 +5,6 @@ description: "Statistics Types and Calculation"
 
 This document provides an overview of the different statistics types available in our API, how they are calculated, and how you can query them using our RESTful API.
 
-### Calculation Methods
-
-- **Sum of Intersecting Values**: This method sums the intersecting values of the specified metrics. It is used to aggregate data points that overlap in time, providing a total count or sum of those values.
-- **Sum of Union of Intersecting Values**: This method sums the union of intersecting values, allowing for a comprehensive aggregation across multiple metrics. It merges several metrics such as `distance`, `distance_walking`, `distance_cycling`, and `distance_running` to provide a total distance covered. This method is useful for combining related metrics to derive a more holistic view.
-- **Duration Weighted Average**: This method calculates the average of values weighted by their duration, ensuring that longer durations have a greater impact on the average.
-- **Maximum/Minimum Value**: These methods return the maximum or minimum value of the specified metrics, providing insights into the peak or lowest values recorded.
-
-### Statistics Types
-
-Our API supports a variety of statistics types, each designed to provide insights into different aspects of data. Below is a list of available statistics types, their descriptions, and the calculation methods used:
-
-- **sleep_score**: Provides a score representing the quality of sleep. Unit: `count`. Method: **Sum of Intersecting Values**.
-- **steps**: Total number of steps taken. Unit: `count`. Method: **Sum of Intersecting Values**.
-- **distance_total**: Total distance covered across activities like walking, cycling, and running. Unit: `meters`, precision: 4 decimal places. Method: **Sum of Union of Intersecting Values**.
-- **distance_walking**: Distance covered while walking. Unit: `meters`, precision: 4 decimal places. Method: **Sum of Intersecting Values**.
-- **distance_cycling**: Distance covered while cycling. Unit: `meters`, precision: 4 decimal places. Method: **Sum of Intersecting Values**.
-- **distance_running**: Distance covered while running. Unit: `meters`, precision: 4 decimal places. Method: **Sum of Intersecting Values**.
-- **calories_burned_basal**: Basal calories burned. Unit: `kcal`, precision: 4 decimal places. Method: **Sum of Intersecting Values**.
-- **calories_burned_active**: Active calories burned. Unit: `kcal`, precision: 4 decimal places. Method: **Sum of Intersecting Values**.
-- **calories_burned_total**: Total calories burned, including basal and active. Unit: `kcal`, precision: 4 decimal places. Method: **Sum of Union of Intersecting Values**.
-- **sleep_duration_total**: Total sleep duration across different sleep stages. Unit: `ms`, precision: 0. Method: **Sum of Union of Intersecting Values**.
-- **heartrate**: Average heart rate over a duration. Unit: `bpm`, precision: 0. Method: **Duration Weighted Average**.
-- **heartrate_max**: Maximum heart rate recorded. Unit: `bpm`, precision: 0. Method: **Maximum Value**.
-- **heartrate_min**: Minimum heart rate recorded. Unit: `bpm`, precision: 0. Method: **Minimum Value**.
-- **heartrate_resting**: Average resting heart rate. Unit: `bpm`, precision: 0. Method: **Duration Weighted Average**.
 
 ### Querying Statistics
 
@@ -46,10 +21,31 @@ To query statistics, you can use our RESTful API. Below is an example of how to 
 }
 ```
 
-- **from**: The start date for the statistics query.
-- **to**: The end date for the statistics query.
-- **types**: An array of statistic types you want to query.
-- **interval**: The interval window for aggregating data (e.g., `day`, `hour`).
+<ParamField body="from" type="string" required>
+  The start date for the statistics query.
+</ParamField>
+
+<ParamField body="to" type="string" required>
+  The end date for the statistics query.
+</ParamField>
+
+<ParamField body="types" type="array" required>
+  An array of statistic types you want to query.
+For a detailed overview of all available statistics, including their methods, metrics, units, and descriptions, please refer to the [Statistics Support Matrix](/statistics_matrix).
+</ParamField>
+
+<ParamField body="interval" type="string" required>
+  The interval window for aggregating data (e.g., `day`, `hour`).
+</ParamField>
+
+<ParamField body="include_record_ids" type="boolean">
+  Whether to include the record IDs in the response.
+</ParamField>
+
+<ParamField body="include_providers" type="boolean">
+  Whether to include the relevant provider slug in the response.
+</ParamField>
+
 
 #### Response Example
 
@@ -68,12 +64,29 @@ To query statistics, you can use our RESTful API. Below is an example of how to 
 }
 ```
 
-- **timestamp_from**: The start timestamp of the aggregated data.
-- **timestamp_to**: The end timestamp of the aggregated data.
-- **values**: The aggregated values for the specified statistic types.
-- **record_ids**: Unique identifiers for the records included in the aggregation.
+<ResponseField name="timestamp_from" type="string" required>
+  The start timestamp of the aggregated data.
+</ResponseField>
 
-  <Note>
-    For more detailed use please refer to our [API
-    reference](/api-reference/query-statistics)
-  </Note>
+<ResponseField name="timestamp_to" type="string" required>
+  The end timestamp of the aggregated data.
+</ResponseField>
+
+<ResponseField name="values" type="object" required>
+  The aggregated values for the specified statistic types.
+</ResponseField>
+
+<ResponseField name="record_ids" type="array">
+  Unique identifiers for the records included in the aggregation. Would only
+  be present if the `include_record_ids` parameter is set to `true`.
+</ResponseField>
+
+<ResponseField name="providers" type="array">
+  The relevant provider slug for the records included in the aggregation. Would
+  only be present if the `include_providers` parameter is set to `true`.
+</ResponseField>
+
+<Note>
+  For more detailed use please refer to our [API
+  reference](/api-reference/query-statistics)
+</Note>
