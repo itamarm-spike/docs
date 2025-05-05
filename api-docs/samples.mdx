@@ -9,12 +9,6 @@ This document provides an overview of the samples query available in our API, ho
 
 Samples represent raw or minimally processed data points collected over time. They are typically used to capture detailed information about specific metrics, such as steps taken, heart rate, or other health-related metrics. Unlike aggregated statistics, samples provide a granular view of the data, allowing for detailed analysis and insights into patterns or trends over time.
 
-### Differences Between Samples and Statistics
-
-- **Samples**: These are individual data points collected at specific intervals. They provide detailed insights and are useful for analyzing trends, patterns, and anomalies in the data. Samples are often used in scenarios where precision and detail are critical.
-
-- **Statistics**: These are aggregated data points that summarize information over a specified period. Statistics are useful for gaining a high-level overview of the data, such as average values, totals, or other summary metrics. They are ideal for reporting and decision-making where detailed data is not necessary.
-
 ### Querying Samples
 
 To query samples, you can use our RESTful API. Below is an example of how to query for samples:
@@ -68,38 +62,8 @@ To query samples, you can use our RESTful API. Below is an example of how to que
 }
 ```
 
-<ResponseField name="metric" type="string" required>
-  The metric type for the sample.
-</ResponseField>
-
-<ResponseField name="start_at" type="string" required>
-  The start timestamp of the sample.
-</ResponseField>
-
-<ResponseField name="offsets_ms" type="array" required>
-  The offsets in milliseconds for the sample.
-</ResponseField>
-
-<ResponseField name="durations_ms" type="array" required>
-  The durations in milliseconds for the sample.
-</ResponseField>
-
-<ResponseField name="values" type="array" required>
-  The values for the specified metric.
-</ResponseField>
-
-<ResponseField name="record_ids" type="array">
-  Unique identifiers for the records included in the sample. Would only
-  be present if the `include_record_ids` parameter is set to `true`.
-</ResponseField>
-
-<ResponseField name="providers" type="array">
-  The relevant provider slug for the records included in the sample. Would
-  only be present if the `include_providers` parameter is set to `true`.
-</ResponseField>
-
 <Note>
-  For more detailed use please refer to our [API
+  For more detailed use and description of all available parameters please refer to our [API reference](/api-reference/query-samples)
   reference](/api-reference/query-samples)
 </Note>
 

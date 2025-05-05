@@ -5,7 +5,17 @@ description: "Integration with providers"
 
 Some providers (e.g., Garmin, Fitbit) require the user to grant consent before Spike API can access their data. Redirect the user to the provider's consent page using a URL obtained via the API
 
-## Obtain Redirect URL
+## Step 1: Configure Redirect URL in Admin Console
+
+To configure the redirect URL in the admin console, navigate to the "Applications" section and locate the "Redirect URLs" option within your application. Here, you can either specify a default redirect URL or add multiple domains to whitelist which would allow you to define your own redirect URL during the integration process.
+
+<Frame>
+![redirect](/images/console_client_redirect.png)
+</Frame>
+
+## Step 2: Obtain Redirect URL
+
+When you want to initiate the integration process for an end user, you can use the following endpoint to obtain a redirect URL for a specific provider.
 
 ### Query arguments
 
@@ -30,5 +40,3 @@ curl -X GET https://app-api.spikeapi.com/v3/providers/fitbit/integration/init_ur
 ## Redirect the User
 
 Redirect the user to the **path** URL provided in the response. This allows them to authorize data access. Once the user is integrated they would be redirected back to your application either using the default redirect URL or using the **redirect_uri** provided in your request to the API
-
-@TODO screenshot of redirect URL and redirect default from console

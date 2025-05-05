@@ -1,54 +1,65 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "colors": {
-    "primary": "#1B2836",
-    "light": "#669bbc",
-    "dark": "#15803D"
+    "primary": "#1B3A5F",
+    "light": "#669bdd",
+    "dark": "#1A4D7A"
   },
   "name": "SpikeAPI",
   "favicon": "/favicon.svg",
   "appearance": {
-    "default": "light"
+    "default": "system"
   },
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Getting Started",
+        "tab": "Quickstart",
         "pages": ["quickstart"]
       },
       {
-        "group": "Using via API",
-        "pages": [
-          "api-docs/overview",
-          "api-docs/authentication",
-          "api-docs/provider_integration",
-          "api-docs/webhooks",
-          "api-docs/statistics",
-          "api-docs/sleep",
-          "api-docs/workout",
-          "api-docs/provider_records"
+        "tab": "API Documentation",
+        "groups": [
+          {
+            "group": "Using via API",
+            "pages": [
+              "api-docs/overview",
+              "api-docs/authentication",
+              "api-docs/provider_integration",
+              "api-docs/webhooks"
+            ]
+          },
+          {
+            "group": "Querying Data",
+            "pages": [
+              "api-docs/samples",
+              "api-docs/statistics",
+              "api-docs/sleep",
+              "api-docs/workout",
+              "api-docs/provider_records"
+            ]
+          },
+          {
+            "group": "OpenAPI",
+            "openapi": {
+              "source": "api-reference/openapi.json",
+              "directory": "api-reference"
+            }
+          },
+          {
+            "group": "Types and Definitions",
+            "pages": [
+              "provider_matrix",
+              "metrics_matrix",
+              "activity_matrix",
+              "statistics_matrix"
+            ]
+          }
         ]
       },
       {
-        "group": "Using via SDK",
-        "pages": ["sdk-docs/development"]
-      },
-      {
-        "group": "API Reference",
-        "openapi": {
-          "source": "api-reference/openapi.json",
-          "directory": "api-reference"
-        }
-      },
-      {
-        "group": "Types and Definitions",
-        "pages": [
-          "provider_matrix",
-          "metrics_matrix",
-          "activity_matrix",
-          "statistics_matrix"
-        ]
+        "tab": "SDK Documentation",
+        "pages": ["sdk-docs/overview"]
       }
     ]
   },

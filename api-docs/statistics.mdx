@@ -6,6 +6,12 @@ description: "Statistics Types and Calculation"
 This document provides an overview of the different statistics types available in our API, how they are calculated, and how you can query them using our RESTful API.
 
 
+### Understanding Statistics
+
+Statistics are calculated based on the data available for a specific time period. The data is aggregated according to the time interval specified in your request. This means that if you request data with a daily interval, the statistics will be aggregated and presented for each day within the specified time range. Similarly, if you choose an hourly interval, the data will be broken down and aggregated for each hour.
+
+The aggregation process involves summing up or averaging the data points within each interval, depending on the type of statistic being queried. This allows you to see trends and patterns over time, making it easier to analyze the data and draw meaningful insights.
+
 ### Querying Statistics
 
 To query statistics, you can use our RESTful API. Below is an example of how to query for statistics:
@@ -46,6 +52,9 @@ For a detailed overview of all available statistics, including their methods, me
   Whether to include the relevant provider slug in the response.
 </ParamField>
 
+<Note>
+  Time is expected in ISO 8601 format or YYYY-MM-DD format.
+</Note>
 
 #### Response Example
 
@@ -64,29 +73,6 @@ For a detailed overview of all available statistics, including their methods, me
 }
 ```
 
-<ResponseField name="timestamp_from" type="string" required>
-  The start timestamp of the aggregated data.
-</ResponseField>
-
-<ResponseField name="timestamp_to" type="string" required>
-  The end timestamp of the aggregated data.
-</ResponseField>
-
-<ResponseField name="values" type="object" required>
-  The aggregated values for the specified statistic types.
-</ResponseField>
-
-<ResponseField name="record_ids" type="array">
-  Unique identifiers for the records included in the aggregation. Would only
-  be present if the `include_record_ids` parameter is set to `true`.
-</ResponseField>
-
-<ResponseField name="providers" type="array">
-  The relevant provider slug for the records included in the aggregation. Would
-  only be present if the `include_providers` parameter is set to `true`.
-</ResponseField>
-
 <Note>
-  For more detailed use please refer to our [API
-  reference](/api-reference/query-statistics)
+  For more detailed use and description of all available parameters please refer to our [API reference](/api-reference/query-statistics)
 </Note>

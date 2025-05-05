@@ -3,17 +3,17 @@ title: "Authentication"
 description: "Authentication process"
 ---
 
-## User Authentication via HMAC – Spike API
-
 Spike API authenticates end users using **HMAC signatures** generated with a **shared secret key**. You can obtain this key from the **administrative console**.
-
-Spike API authenticates end users using HMAC signatures generated with a shared key. You can obtain this key from the administrative console.
 
 ## Step 1: Generate an HMAC Signature
 
 Use the secret key from your console to generate an HMAC-SHA256 signature for each user.
 
-@TODO add screenshow of where to copy the key from
+<Frame>
+![hmac key](/images/console_client_hmac.png)
+</Frame>
+
+### Code Examples
 
 <CodeGroup>
 
@@ -75,7 +75,7 @@ function signUser($userId) {
 
 Send the generated signature to the following endpoint to authorize the user and obtain an access token:
 
-### Request
+### Request Parameters
 
 <ParamField body="application_id" type="string" required>
   The ID of the application for which you are requesting the access token.
@@ -83,12 +83,12 @@ Send the generated signature to the following endpoint to authorize the user and
 
 <ParamField body="application_user_id" type="string" required>
   The unique ID of the user in your system. This is the only identifier needed
-  to reference the user. Maximum 1-128 alphanumeric characters. May include
-  these special characters: - _ .
+to reference the user. Maximum 1-128 alphanumeric characters. May include
+these special characters: - _ .
 </ParamField>
 
 <ParamField body="signature" type="string" required>
-  The HMAC signature generated to verify the user’s authenticity.
+  The HMAC signature generated to verify the user's authenticity.
 </ParamField>
 
 #### Example Request
