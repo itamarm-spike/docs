@@ -23,6 +23,7 @@
           {
             "group": "Integrating with SpikeAPI",
             "pages": [
+              "api-docs/overview",
               "api-docs/authentication",
               "api-docs/provider_integration",
               "api-docs/webhooks"
