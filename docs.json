@@ -7,7 +7,7 @@
     "dark": "#1A4D7A"
   },
   "name": "SpikeAPI",
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "appearance": {
     "default": "system"
   },
@@ -21,9 +21,8 @@
         "tab": "API Documentation",
         "groups": [
           {
-            "group": "Using via API",
+            "group": "Integrating with SpikeAPI",
             "pages": [
-              "api-docs/overview",
               "api-docs/authentication",
               "api-docs/provider_integration",
               "api-docs/webhooks"
@@ -49,10 +48,10 @@
           {
             "group": "Types and Definitions",
             "pages": [
-              "provider_matrix",
-              "metrics_matrix",
-              "activity_matrix",
-              "statistics_matrix"
+              "api-docs/provider_matrix",
+              "api-docs/metrics_matrix",
+              "api-docs/activity_matrix",
+              "api-docs/statistics_matrix"
             ]
           }
         ]
@@ -64,8 +63,8 @@
     ]
   },
   "logo": {
-    "light": "https://spikeapi.com/wp-content/uploads/2021/11/spike-logo-n.svg",
-    "dark": "https://spikeapi.com/wp-content/uploads/2021/11/spike-logo-n.svg"
+    "light": "/images/logo.svg",
+    "dark": "/images/logo.svg"
   },
   "navbar": {
     "links": [

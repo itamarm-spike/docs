@@ -1,0 +1,43 @@
+---
+title: "Statistic Types and Methods"
+mode: "wide"
+description: "This document provides a comprehensive overview of all statistics, detailing their methods, metrics, units, and descriptions. The table below summarizes the key features supported by each statistic."
+---
+
+This document provides a comprehensive overview of all statistics, detailing their methods, metrics, units, and descriptions. The table below summarizes the key features supported by each statistic.
+
+## Statistics
+
+The following table lists all the statistics available, along with their descriptions, applicable methods, associated metrics, units of measurement, and output precision.
+
+| **Label** | **Description** | **Methods** | **Metrics** | **Unit** | **Output Precision** |
+|:----------|:----------------|:------------|:------------|:---------|:---------------------|
+| sleep_score | Overall sleep score based on various sleep metrics, calculated using intersecting values. | sleep_score |  | count | 0 |
+| steps | Total number of steps taken, aggregated using intersecting values. | intersect_sum | steps | count | 0 |
+| distance_total | Total distance covered across all activities, calculated using the union of intersecting values. | intersect_union_sum | distance, distance_walking, distance_cycling, distance_running | meters | 4 |
+| distance_walking | Total distance covered while walking, aggregated using intersecting values. | intersect_sum | distance_walking | meters | 4 |
+| distance_cycling | Total distance covered while cycling, aggregated using intersecting values. | intersect_sum | distance_cycling | meters | 4 |
+| distance_running | Total distance covered while running, aggregated using intersecting values. | intersect_sum | distance_running | meters | 4 |
+| calories_burned_basal | Calories burned at rest (basal metabolic rate), aggregated using intersecting values. | intersect_sum | calories_burned_basal | kcal | 4 |
+| calories_burned_active | Calories burned during active periods, aggregated using intersecting values. | intersect_sum | calories_burned_active | kcal | 4 |
+| calories_burned_total | Total calories burned including basal and active periods, calculated using the union of intersecting values. | intersect_union_sum | calories_burned, calories_burned_basal, calories_burned_active | kcal | 4 |
+| sleep_duration_total | Total sleep duration across all sleep stages, calculated using the union of intersecting values. | intersect_union_sum | sleep_duration_deep, sleep_duration_light, sleep_duration_rem, sleep_duration_awake | ms | 0 |
+| heartrate | Average heart rate over a period, calculated using duration-weighted average. | duration_weighted_avg | heartrate | bpm | 0 |
+| heartrate_max | Maximum recorded heart rate, providing insights into peak values. | max | heartrate | bpm | 0 |
+| heartrate_min | Minimum recorded heart rate, providing insights into lowest values. | min | heartrate | bpm | 0 |
+| heartrate_resting | Average resting heart rate, calculated using duration-weighted average. | duration_weighted_avg | heartrate_resting | bpm | 0 |
+
+
+## Methods
+
+The table below provides details on the various methods used in the statistics, including a brief description of each.
+
+| **Label** | **Description** |
+|:----------|:----------------|
+| intersect_sum | Sum of intersecting values of specified metrics, aggregating overlapping data points to provide a total count or sum. |
+| intersect_union_sum | Sum of the union of intersecting values, merging several metrics to provide a comprehensive aggregation across multiple metrics. |
+| sleep_score | A score representing the quality of sleep, calculated using intersecting values. |
+| duration_weighted_avg | Average of values weighted by their duration, ensuring longer durations have a greater impact on the average. |
+| max | Maximum value of the specified metrics, providing insights into the peak values recorded. |
+| min | Minimum value of the specified metrics, providing insights into the lowest values recorded. |
+

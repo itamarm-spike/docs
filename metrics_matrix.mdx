@@ -6,76 +6,75 @@ description: "This document provides a comprehensive overview of all metrics, de
 
 This document provides a comprehensive overview of all metrics, detailing their providers, units, and descriptions. The table below summarizes the key features supported by each metric.
 
-| **Metric** | **Providers** | **Unit** | **Description** |
-|:-----------|:--------------|:---------|:----------------|
-| air_temperature |  | celsius | Average air temperature |
-| air_temperature_max |  | celsius | Maximum air temperature |
-| air_temperature_min |  | celsius | Minimum air temperature |
-| ascent | garmin | meters | Total ascent |
-| bedtime_duration | fitbit, oura, whoop, withings, huawei | ms | Bedtime duration |
-| body_mass_index |  | count | Body mass index |
-| body_temperature | apple, health_connect, polar, withings | celsius | Body temperature |
-| body_temperature_max |  | celsius | Maximum body temperature |
-| body_temperature_min |  | celsius | Minimum body temperature |
-| cadence | garmin, suunto, huawei | rpm | Average cadence |
-| cadence_max | apple, garmin, polar, suunto, huawei | rpm | Maximum cadence |
-| cadence_min | apple, garmin, polar, suunto | rpm | Minimum cadence |
-| calories_burned | apple, health_connect, fitbit, oura, withings | kcal | Total calories burned |
-| calories_burned_active | garmin | kcal | Active calories burned |
-| calories_burned_basal | apple, health_connect, fitbit, garmin, oura, polar, suunto, whoop, withings, huawei | kcal | Basal calories burned |
-| calories_intake | health_connect, oura, suunto, whoop, huawei | kcal | Calories intake |
-| descent | garmin, huawei | meters | Total descent |
-| distance | apple, health_connect, fitbit, garmin, suunto, withings, huawei | meters | Total distance |
-| distance_cycling | oura | meters | Cycling distance |
-| distance_running | fitbit, garmin, polar | meters | Running distance |
-| distance_swimming | fitbit | meters | Swimming distance |
-| distance_walking | fitbit, garmin, oura, polar, suunto | meters | Walking distance |
-| distance_wheelchair | fitbit, garmin | meters | Wheelchair distance |
-| duration_active | garmin, huawei | ms | Active duration |
-| ecg_rri |  | ms | ECG R-R interval |
-| ecg_voltage |  | uV | ECG voltage |
-| elevation | garmin, withings, huawei | meters | Average elevation |
-| elevation_gain | fitbit, garmin, huawei | meters | Total elevation gain |
-| elevation_loss | garmin, huawei | meters | Total elevation loss |
-| elevation_max | garmin, suunto, withings, huawei | meters | Maximum elevation |
-| elevation_min | garmin, suunto, withings, huawei | meters | Minimum elevation |
-| floors_climbed |  | count | Floors climbed |
-| heartrate | apple, health_connect, fitbit, garmin, oura, polar, suunto, whoop, withings, huawei | bpm | Average heart rate |
-| heartrate_max | apple, health_connect, fitbit, garmin, oura, polar, suunto, whoop, withings, huawei | bpm | Maximum heart rate |
-| heartrate_min | apple, health_connect, fitbit, garmin, oura, polar, suunto, whoop, withings, huawei | bpm | Minimum heart rate |
-| heartrate_resting | apple, health_connect, fitbit, polar, whoop, huawei | bpm | Resting heart rate |
-| height | apple, health_connect, polar, withings | meters | Height |
-| hrv_rmssd | health_connect, fitbit, oura, polar, whoop | ms | Heart rate variability (RMSSD) |
-| hrv_sdnn | apple, fitbit, oura | ms | Heart rate variability (SDNN) |
-| latitude | garmin, suunto | degrees | Average latitude |
-| longitude | garmin, suunto, huawei | degrees | Average longitude |
-| pace | garmin, suunto, huawei | sec/m | Average pace |
-| skin_temperature | health_connect, whoop | celsius | Skin temperature |
-| skin_temperature_max | health_connect | celsius | Maximum skin temperature |
-| skin_temperature_min | apple, health_connect, withings | celsius | Minimum skin temperature |
-| sleep_breathing_rate |  | rpm | Average sleep breathing rate |
-| sleep_breathing_rate_max |  | rpm | Maximum sleep breathing rate |
-| sleep_breathing_rate_min |  | rpm | Minimum sleep breathing rate |
-| sleep_duration |  | ms | Total sleep duration |
-| sleep_duration_awake | apple, health_connect, fitbit, oura, polar, whoop, withings, huawei | ms | Awake duration during sleep |
-| sleep_duration_deep | apple, health_connect, fitbit, oura, polar, suunto, whoop, withings, huawei | ms | Deep sleep duration |
-| sleep_duration_light | apple, health_connect, fitbit, oura, polar, whoop, withings, huawei | ms | Light sleep duration |
-| sleep_duration_nap | whoop | ms | Nap duration |
-| sleep_duration_rem | apple, health_connect, fitbit, oura, polar, whoop, huawei | ms | REM sleep duration |
-| sleep_efficiency | apple, health_connect, fitbit, oura, polar, suunto, whoop, withings, huawei | percentage | Sleep efficiency |
-| sleep_interruptions | apple, health_connect, fitbit, oura, whoop, withings, huawei | count | Sleep interruptions |
-| sleep_latency | fitbit, oura, polar, whoop, withings | ms | Sleep latency |
-| sleep_score | huawei | percentage | Sleep score |
-| speed | garmin | m/sec | Average speed |
-| speed_max |  | m/sec | Maximum speed |
-| speed_min | garmin, suunto | m/sec | Minimum speed |
-| spo2 | apple, health_connect, fitbit, oura, whoop, withings | percentage | Average blood oxygen level |
-| spo2_max | apple, fitbit, withings | percentage | Maximum blood oxygen level |
-| spo2_min | apple, fitbit, oura, withings | percentage | Minimum blood oxygen level |
-| steps | apple, health_connect, fitbit, garmin, oura, suunto, withings, huawei | count | Total steps |
-| swimming_distance_per_stroke | withings | meters | Swimming distance per stroke |
-| swimming_lengths |  | count | Swimming lengths |
-| vo2max | apple, health_connect, fitbit, polar, withings | mL/kg/min | VO2 max |
-| wakeup_latency | apple, health_connect, fitbit, oura, polar, whoop | ms | Wakeup latency |
-| weight | fitbit, garmin, suunto, huawei | g | Weight |
-
+| **Metric**                   | **Providers**                                                                       | **Unit**   | **Description**                |
+| :--------------------------- | :---------------------------------------------------------------------------------- | :--------- | :----------------------------- |
+| air_temperature              |                                                                                     | celsius    | Average air temperature        |
+| air_temperature_max          |                                                                                     | celsius    | Maximum air temperature        |
+| air_temperature_min          |                                                                                     | celsius    | Minimum air temperature        |
+| ascent                       | garmin                                                                              | meters     | Total ascent                   |
+| bedtime_duration             | fitbit, oura, whoop, withings, huawei                                               | ms         | Bedtime duration               |
+| body_mass_index              |                                                                                     | count      | Body mass index                |
+| body_temperature             | apple, health_connect, polar, withings                                              | celsius    | Body temperature               |
+| body_temperature_max         |                                                                                     | celsius    | Maximum body temperature       |
+| body_temperature_min         |                                                                                     | celsius    | Minimum body temperature       |
+| cadence                      | garmin, suunto, huawei                                                              | rpm        | Average cadence                |
+| cadence_max                  | apple, garmin, polar, suunto, huawei                                                | rpm        | Maximum cadence                |
+| cadence_min                  | apple, garmin, polar, suunto                                                        | rpm        | Minimum cadence                |
+| calories_burned              | apple, health_connect, fitbit, oura, withings                                       | kcal       | Total calories burned          |
+| calories_burned_active       | garmin                                                                              | kcal       | Active calories burned         |
+| calories_burned_basal        | apple, health_connect, fitbit, garmin, oura, polar, suunto, whoop, withings, huawei | kcal       | Basal calories burned          |
+| calories_intake              | health_connect, oura, suunto, whoop, huawei                                         | kcal       | Calories intake                |
+| descent                      | garmin, huawei                                                                      | meters     | Total descent                  |
+| distance                     | apple, health_connect, fitbit, garmin, suunto, withings, huawei                     | meters     | Total distance                 |
+| distance_cycling             | oura                                                                                | meters     | Cycling distance               |
+| distance_running             | fitbit, garmin, polar                                                               | meters     | Running distance               |
+| distance_swimming            | fitbit                                                                              | meters     | Swimming distance              |
+| distance_walking             | fitbit, garmin, oura, polar, suunto                                                 | meters     | Walking distance               |
+| distance_wheelchair          | fitbit, garmin                                                                      | meters     | Wheelchair distance            |
+| duration_active              | garmin, huawei                                                                      | ms         | Active duration                |
+| ecg_rri                      |                                                                                     | ms         | ECG R-R interval               |
+| ecg_voltage                  |                                                                                     | uV         | ECG voltage                    |
+| elevation                    | garmin, withings, huawei                                                            | meters     | Average elevation              |
+| elevation_gain               | fitbit, garmin, huawei                                                              | meters     | Total elevation gain           |
+| elevation_loss               | garmin, huawei                                                                      | meters     | Total elevation loss           |
+| elevation_max                | garmin, suunto, withings, huawei                                                    | meters     | Maximum elevation              |
+| elevation_min                | garmin, suunto, withings, huawei                                                    | meters     | Minimum elevation              |
+| floors_climbed               |                                                                                     | count      | Floors climbed                 |
+| heartrate                    | apple, health_connect, fitbit, garmin, oura, polar, suunto, whoop, withings, huawei | bpm        | Average heart rate             |
+| heartrate_max                | apple, health_connect, fitbit, garmin, oura, polar, suunto, whoop, withings, huawei | bpm        | Maximum heart rate             |
+| heartrate_min                | apple, health_connect, fitbit, garmin, oura, polar, suunto, whoop, withings, huawei | bpm        | Minimum heart rate             |
+| heartrate_resting            | apple, health_connect, fitbit, polar, whoop, huawei                                 | bpm        | Resting heart rate             |
+| height                       | apple, health_connect, polar, withings                                              | meters     | Height                         |
+| hrv_rmssd                    | health_connect, fitbit, oura, polar, whoop                                          | ms         | Heart rate variability (RMSSD) |
+| hrv_sdnn                     | apple, fitbit, oura                                                                 | ms         | Heart rate variability (SDNN)  |
+| latitude                     | garmin, suunto                                                                      | degrees    | Average latitude               |
+| longitude                    | garmin, suunto, huawei                                                              | degrees    | Average longitude              |
+| pace                         | garmin, suunto, huawei                                                              | sec/m      | Average pace                   |
+| skin_temperature             | health_connect, whoop                                                               | celsius    | Skin temperature               |
+| skin_temperature_max         | health_connect                                                                      | celsius    | Maximum skin temperature       |
+| skin_temperature_min         | apple, health_connect, withings                                                     | celsius    | Minimum skin temperature       |
+| sleep_breathing_rate         |                                                                                     | rpm        | Average sleep breathing rate   |
+| sleep_breathing_rate_max     |                                                                                     | rpm        | Maximum sleep breathing rate   |
+| sleep_breathing_rate_min     |                                                                                     | rpm        | Minimum sleep breathing rate   |
+| sleep_duration               |                                                                                     | ms         | Total sleep duration           |
+| sleep_duration_awake         | apple, health_connect, fitbit, oura, polar, whoop, withings, huawei                 | ms         | Awake duration during sleep    |
+| sleep_duration_deep          | apple, health_connect, fitbit, oura, polar, suunto, whoop, withings, huawei         | ms         | Deep sleep duration            |
+| sleep_duration_light         | apple, health_connect, fitbit, oura, polar, whoop, withings, huawei                 | ms         | Light sleep duration           |
+| sleep_duration_nap           | whoop                                                                               | ms         | Nap duration                   |
+| sleep_duration_rem           | apple, health_connect, fitbit, oura, polar, whoop, huawei                           | ms         | REM sleep duration             |
+| sleep_efficiency             | apple, health_connect, fitbit, oura, polar, suunto, whoop, withings, huawei         | percentage | Sleep efficiency               |
+| sleep_interruptions          | apple, health_connect, fitbit, oura, whoop, withings, huawei                        | count      | Sleep interruptions            |
+| sleep_latency                | fitbit, oura, polar, whoop, withings                                                | ms         | Sleep latency                  |
+| sleep_score                  | huawei                                                                              | percentage | Sleep score                    |
+| speed                        | garmin                                                                              | m/sec      | Average speed                  |
+| speed_max                    |                                                                                     | m/sec      | Maximum speed                  |
+| speed_min                    | garmin, suunto                                                                      | m/sec      | Minimum speed                  |
+| spo2                         | apple, health_connect, fitbit, oura, whoop, withings                                | percentage | Average blood oxygen level     |
+| spo2_max                     | apple, fitbit, withings                                                             | percentage | Maximum blood oxygen level     |
+| spo2_min                     | apple, fitbit, oura, withings                                                       | percentage | Minimum blood oxygen level     |
+| steps                        | apple, health_connect, fitbit, garmin, oura, suunto, withings, huawei               | count      | Total steps                    |
+| swimming_distance_per_stroke | withings                                                                            | meters     | Swimming distance per stroke   |
+| swimming_lengths             |                                                                                     | count      | Swimming lengths               |
+| vo2max                       | apple, health_connect, fitbit, polar, withings                                      | mL/kg/min  | VO2 max                        |
+| wakeup_latency               | apple, health_connect, fitbit, oura, polar, whoop                                   | ms         | Wakeup latency                 |
+| weight                       | fitbit, garmin, suunto, huawei                                                      | g          | Weight                         |

@@ -1,5 +1,5 @@
 ---
-title: "Query Sleep API"
+title: "Query Sleep"
 description: "API Documentation for Sleep Query Endpoints"
 ---
 
@@ -26,13 +26,11 @@ The Sleep Query API provides the following endpoints:
   Include sleep samples in the response.
 </ParamField>
 
-
 **Response**
 
 <ResponseField name="sleeps" type="array" required>
   List of sleep activities.
 </ResponseField>
-
 
 #### Get Sleep Activity by ID
 
@@ -66,7 +64,8 @@ The Sleep Query API provides the following endpoints:
   Sleep samples.
 </ResponseField>
 
-### Example Request
+
+<RequestExample>
 
 ```json Request
 {
@@ -97,6 +96,9 @@ The Sleep Query API provides the following endpoints:
 }
 ```
 
+</ResponseExample>
+
 <Note>
-  For more detailed use, please refer to our [API reference](/api-reference/query-sleep)
+  For more detailed use, please refer to our [API
+  reference](/api-reference/query-sleep)
 </Note>
