@@ -20,10 +20,28 @@ The Spike API enables seamless integration with health and fitness data provider
 
 The API offers robust control and server-side processing, while the SDK simplifies integration with automatic handling of common tasks.
 
-### Using the API Directly
 
-<Card>
-  <h3>Direct API Integration</h3>
+
+### Using the API Directly
+  ```mermaid
+  sequenceDiagram
+    participant ClientApp as Client Application
+    participant ClientServer as Client Server
+    participant SpikeSDK as Spike SDK
+    participant SpikeAPI as Spike API
+    participant Provider as Data Provider
+    ClientApp->>SpikeSDK: Request Provider Integration
+    activate SpikeSDK
+    SpikeSDK->>SpikeAPI: Initiate Provider Integration
+    deactivate SpikeSDK
+    SpikeAPI->>Provider: Integrate
+    Provider->>SpikeAPI: Continously Sync Data
+    SpikeAPI->>ClientServer: Webhook Event
+    ClientServer->>SpikeAPI: Query Data
+    activate SpikeAPI
+    SpikeAPI->>ClientServer: Return Data
+    deactivate SpikeAPI
+  ```
   <p>Ideal for scenarios where:</p>
   <ul>
     <li>Data needs to be available for central processing on a server</li>
@@ -35,12 +53,28 @@ The API offers robust control and server-side processing, while the SDK simplifi
     Documentation](/api-docs/overview)
   </Note>
 
-</Card>
 
 ### Using the SDK
 
-<Card>
   <h3>SDK Integration</h3>
+  ```mermaid
+  sequenceDiagram
+    participant ClientApp as Client Application
+    participant SpikeSDK as Spike SDK
+    participant SpikeAPI as Spike API
+    participant Provider as Data Provider
+    ClientApp->>SpikeSDK: Request to Integrate with Provider
+    activate SpikeSDK
+    SpikeSDK->>SpikeAPI: Start Provider Integration Process
+    deactivate SpikeSDK
+    SpikeAPI->>Provider: Establish Integration
+    Provider->>SpikeAPI: Continuously Synchronize Data
+    ClientApp->>SpikeSDK: Request Data Retrieval
+    activate SpikeSDK
+    SpikeSDK->>SpikeAPI: Forward Data Query
+    deactivate SpikeSDK
+    SpikeAPI->>ClientApp: Deliver Retrieved Data
+  ```
   <p>Best suited for applications where:</p>
   <ul>
     <li>Data is primarily used within the context of an app</li>
@@ -53,4 +87,3 @@ The API offers robust control and server-side processing, while the SDK simplifi
     For detailed SDK documentation, visit our [SDK
     Documentation](/sdk-docs/overview)
   </Note>
-</Card>
