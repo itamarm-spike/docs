@@ -1,12 +1,10 @@
 ---
 title: "Webhooks"
-description: "Webhooks"
+description: "To receive data updates, configure a webhook endpoint via the admin console. After each data update from the provider, a webhook event will be sent to your endpoint."
 icon: "bell"
 ---
 
-To receive data updates, configure a webhook endpoint via the admin console. After each data update from the provider, a webhook event will be sent to your endpoint.
-
-Your endpoint **must respond with HTTP 200** to acknowledge successful receipt. If the request fails due to a network error or returns any status code other than 200, the system will retry the request **up to 5 times** with exponential backoff. After the final attempt, the event will be discarded.
+Your endpoint **must respond with HTTP 200** to acknowledge successful receipt. If the request fails due to a network error, exceeds 30 seconds to complete or returns any status code other than 200, the system will retry the request **up to 5 times** with exponential backoff. After the final attempt, the event will be discarded.
 
 ## Webhook event Payload
 

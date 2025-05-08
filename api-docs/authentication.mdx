@@ -76,6 +76,9 @@ function signUser($userId) {
 
 Send the generated signature to the following endpoint to authorize the user and obtain an access token:
 
+
+`https://app-api.spikeapi.com/v3/auth/hmac`
+
 ### Request Parameters
 
 <ParamField body="application_id" type="string" required>
@@ -101,7 +104,7 @@ curl --location 'https://app-api.spikeapi.com/v3/auth/hmac' \
     --data '{
         "application_id": 9999,
         "application_user_id": "my_application_user_123",
-        "signature": "string"
+        "signature": "SIGNATURE_FROM_STEP_1"
     }'
 ```
 
