@@ -26,25 +26,30 @@
               "api-docs/overview",
               "api-docs/authentication",
               "api-docs/provider_integration",
-              "api-docs/webhooks"
+              "api-docs/webhooks",
+              "api-docs/query_options_comparison"
             ]
           },
           {
-            "group": "Querying Data",
+            "group": "API Reference: User Management",
             "pages": [
-              "api-docs/samples",
-              "api-docs/statistics",
-              "api-docs/sleep",
-              "api-docs/workout",
-              "api-docs/provider_records"
+              "api-reference/delete-integration",
+              "api-reference/user-info",
+              "api-reference/user-properties"
             ]
           },
           {
-            "group": "OpenAPI",
-            "openapi": {
-              "source": "api-reference/openapi.json",
-              "directory": "api-reference"
-            }
+            "group": "API Reference: Querying Data",
+            "pages": [
+              "api-reference/query-provider-records-list",
+              "api-reference/query-provider-record-by-id",
+              "api-reference/query-samples",
+              "api-reference/query-sleep-list",
+              "api-reference/query-sleep-by-id",
+              "api-reference/query-statistics",
+              "api-reference/query-workouts-list",
+              "api-reference/query-workout-by-id"
+            ]
           },
           {
             "group": "Types and Definitions",

@@ -1,0 +1,31 @@
+---
+title: "Querying Data"
+icon: "database"
+description: "Comparison of Query Options for Developers"
+---
+
+This document provides a comparison of the different query options available in our API, helping developers choose the right option for their needs. Below, we outline the key differences between querying provider records, statistics, sleep data, workout data, and samples.
+
+### Query Options Overview
+
+- **Statistics**: This option is best for aggregated data over a specified time period. It allows you to see trends and patterns by summing or averaging data points. For more information, see the [Statistics Documentation](../api-reference/query-statistics.mdx).
+
+- **Sleep Data**: If you need to access sleep-related activities, this option provides endpoints to list and retrieve sleep activities. It includes options to include sleep stages and samples. Check the [Sleep Documentation](../api-reference/query-sleep-list.mdx) for further details.
+
+- **Workout Data**: This option is tailored for querying workout-related activities. It provides detailed insights into workout sessions. For more information, visit the [Workout Documentation](../api-reference/query-workouts-list.mdx).
+
+- **Samples**: Use this option for querying raw or minimally processed data points. It is useful for detailed analysis of specific metrics over time. For more details, refer to the [Samples Documentation](../api-reference/query-samples.mdx).
+
+- **Provider Records**: This option allows you to query detailed records from various providers. However, due to the complexity and difficulty in parsing this data, it is recommended primarily for debugging purposes or when you need data that closely mirrors what the provider offers. For more details, refer to the [Provider Records Documentation](../api-reference/query-provider-records.mdx).
+
+### Choosing the Right Query Option
+
+When deciding which query option to use, consider the following:
+
+- **Data Granularity**: If you need detailed, raw data, consider using Samples. Provider Records should be used cautiously due to its complexity and is best suited for debugging or when provider-specific data is necessary. For aggregated insights, Statistics might be more appropriate.
+
+- **Specific Use Cases**: For sleep or workout-specific data, use the respective Sleep or Workout query options.
+
+- **Integration Needs**: Consider how the data will be integrated into your application and choose the option that best fits your data processing and analysis requirements.
+
+By understanding the differences between these query options, developers can make informed decisions on which API endpoints to use for their specific needs. For more detailed information, please refer to the linked documentation for each query option. 
