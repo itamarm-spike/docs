@@ -1,0 +1,142 @@
+---
+title: "Usage Guide"
+---
+
+Start getting Spike data in 3 steps. All Spike SDK async method calls should be wrapped into try catch block.
+
+## Step 1 - Create Spike connection
+
+To set up the Spike SDK create `SpikeConnectionV3` instance with your Spike application id, auth token and user id unique to each of your users:
+
+```swift
+import SpikeSDK
+static func createConnectionAPIv3(
+    applicationId: Int,
+    signature: String,
+    endUserId: String
+) async throws -> SpikeConnectionAPIv3
+)
+```
+
+## Step 2 - Ask user for permissions
+
+Provide permissions to access iOS HealthKit data. Spike SDK method will check required permissions and request them if needed. Permission dialog may not be shown according on iOS permissions rules.
+
+```swift
+try await spikeConnectionTemp.requestPermissions(forStatistics: [
+        .stepsTotal,
+        .distanceWalking,
+    ]
+)
+```
+
+## Step 3 - Get data
+
+Info: The maximum permitted date range is 90 days
+
+There are two types of data you can retrieve from Spike:
+
+- **Records** consist of the raw data points collected from user devices or applications.
+- **Statistics**, on the other hand, are calculated values derived from records.
+
+#### Statistics
+
+Get daily statistics for steps and total distance from Apple Health:
+
+```swift
+func getStatistics(
+    ofTypes types: [StatisticsType.steps],
+    from: Date.now.addingTimeInterval(-60 * 60 * 24),
+    to: Date.now,
+    interval: StatisticsInterval.hour,
+    filter: StatisticsFilter(providers: [.apple])
+) async throws -> [Statistic]
+```
+
+where:
+
+```swift
+public enum StatisticsType: String {
+    case steps
+    case distanceTotal = "distance_total"
+    case distanceWalking = "distance_walking"
+    case distanceCycling = "distance_cycling"
+    case distanceRunning = "distance_running"
+    case caloriesBurnedTotal = "calories_burned_total"
+    case caloriesBurnedBasal = "calories_burned_basal"
+    case caloriesBurnedActive = "calories_burned_active"
+}
+
+public enum StatisticsInterval: String, Codable {
+    case hour
+    case day
+}
+
+public struct StatisticsFilter {
+    public var excludeManual: Bool = false
+    public var providers: [Provider]? = nil
+}
+
+// Result:
+
+public struct Statistic: Codable, Hashable {
+    public var start: Date
+    public var end: Date
+    public var duration: Int
+    public var type: StatisticsType
+    public var value: Double
+    public var unit: Unit
+    public var rowCount: Int?
+    public var recordIds: [UUID]?
+}
+```
+
+#### Records
+
+```swift
+func getRecords(
+    ofTypes types: [MetricType.stepsTotal],
+    from: Date.now.addingTimeInterval(-60 * 60 * 24),
+    to: Date.now,
+    filter: StatisticsFilter(providers: [.apple])
+) async throws -> [Record]
+```
+
+where:
+
+```swift
+public enum MetricType: String, Codable, Hashable {
+    case stepsTotal
+    case distanceTotal
+    case distanceWalking
+    case distanceCycling
+    case distanceRunning
+    case caloriesBurnedActive
+    case caloriesBurnedBasal
+    case caloriesBurnedTotal
+}
+
+// Result
+
+public struct Record: Codable, Hashable {
+    public var recordId: UUID
+    public var inputMethod: InputMethod?
+    public var startAt: Date
+    public var endAt: Date?
+    public var modifiedAt: Date
+    public var duration: Int?
+    public var provider: Provider?
+    public var providerSource: ProviderSource?
+    public var isSourceAggregated: Bool?
+    public var source: RecordSource?
+    public var metrics: [String: Double]?
+    public var activityTags: [ActivityTag]?
+    public var activityType: ActivityType?
+    public var sessions: [ActivityEntry]?
+    public var laps: [ActivityEntry]?
+    public var segments: [ActivityEntry]?
+    public var splits: [ActivityEntry]?
+    public var samples: [ActivitySamples]?
+    public var routePoints: [ActivitySamples]?
+}
+``` 

@@ -1,0 +1,58 @@
+---
+title: "Setup Guide"
+description: "This document provides a comprehensive overview of the Spike SDK for iOS, detailing its features and capabilities."
+---
+
+**Current Swift SDK Version:** `4.2.41`
+
+- Swift Package: [Available here](https://gitlab.com/spike_api/spike-ios-sdk)
+- API Reference for SpikeSDK: [Available here](https://spike_api.gitlab.io/spike-ios-sdk/documentation/spikesdk/spikeconnectionapiv3/)
+
+## Requirements
+
+- **iOS Version:** `13.0+`
+
+## iOS Signing & Capabilities
+
+To add HealthKit support to your application's Capabilities:
+
+1. Open the `iOS/` folder of your project in Xcode.
+2. Select the project name in the left sidebar.
+3. Open the **Signing & Capabilities** section.
+4. In the main view, select **+ Capability** and double-click **HealthKit**.
+
+For more details, see [Apple's HealthKit setup guide](https://developer.apple.com/documentation/healthkit/setting_up_healthkit).
+
+## Info.plist
+
+Add Health Kit permissions descriptions to your `Info.plist` file:
+
+```xml
+<key>NSHealthShareUsageDescription</key>
+<string>We will use your health information to better track workouts.</string>
+
+<key>NSHealthUpdateUsageDescription</key>
+<string>We will update your health information to better track workouts.</string>
+```
+
+# SDK Installation
+
+### CocoaPods
+
+CocoaPods is a dependency manager for Cocoa projects. To integrate SpikeSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```
+pod 'SpikeSDK'
+```
+
+Use `pod install` and `pod update` commands to install/update pods afterward.
+
+### Swift Package Manager
+
+To integrate SpikeSDK into your Xcode project using Swift Package Manager, add it in your `Package.swift` or through the Project's **Package Dependencies** tab:
+
+```swift
+dependencies: [
+    .package(url: "https://gitlab.com/spike_api/spike-ios-sdk", .upToNextMinor(from: "2.3.0"))
+]
+``` 

@@ -64,7 +64,38 @@
       },
       {
         "tab": "SDK Documentation",
-        "pages": ["sdk-docs/overview"]
+        "groups": [
+          {
+            "group": "iOS",
+            "pages": [
+              "sdk-docs/ios/setup-guide",
+              "sdk-docs/ios/usage-guide",
+              "sdk-docs/ios/background-delivery",
+              "sdk-docs/ios/logs-and-debugging"
+            ]
+          },
+          {
+            "group": "Android",
+            "pages": [
+              "sdk-docs/android/setup-guide",
+              "sdk-docs/android/usage-guide"
+            ]
+          },
+          {
+            "group": "React Native",
+            "pages": [
+              "sdk-docs/react-native/setup-guide",
+              "sdk-docs/react-native/usage-guide"
+            ]
+          },
+          {
+            "group": "Flutter",
+            "pages": [
+              "sdk-docs/flutter/setup-guide",
+              "sdk-docs/flutter/usage-guide"
+            ]
+          }
+        ]
       }
     ]
   },

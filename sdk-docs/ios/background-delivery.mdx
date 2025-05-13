@@ -1,0 +1,102 @@
+---
+title: "Background Delivery"
+description: "Background delivery ensures that data updates are sent to your backend via webhooks, even when the application is in the background or closed."
+---
+
+## Important notes about background delivery on iOS
+
+- For most data types the most possible frequency of updates is 1 hour.
+- iOS can update data more frequently for some data types, for example, vo2 max.
+- iOS may throttle the frequency of updates for background delivery depending on the app's activity, battery state, etc.
+- Background delivery is not possible while device is locked, so it will be executed only when the device is unlocked.
+- iOS may stop background delivery if it detects that the app is not active for a long time.
+- The feature is available starting with iOS 15.
+
+<Warning>
+  **Important:** The SpikeSDK, along with any other HealthKit applications, cannot guarantee data synchronization on a fixed schedule. The hourly sync interval serves as a guideline rather than a strict requirement enforced by iOS. Consequently, the actual synchronization frequency may vary, occurring hourly, once per day, or during specific system-defined events, such as the conclusion of Sleep Mode or when the device begins charging.
+</Warning>
+
+## Setup
+
+### Enable background delivery for app target
+
+- Open the folder of your project in Xcode
+- Select the project name in the left sidebar
+- Open Signing & Capabilities section
+- Select HealthKit background delivery under HealthKit section
+
+### Initialization at app startup
+
+Add Spike initialization code to your AppDelegate inside application\:didFinishLaunchingWithOptions: method:
+
+```swift
+import SpikeSDK
+...
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    ...
+    Spike.configure()
+    ...
+}
+```
+
+For SwiftUI based apps follow few steps:
+
+Create a custom class that inherits from NSObject and conforms to the UIApplicationDelegate protocol:
+
+```swift
+import SpikeSDK
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        Spike.configure()
+        return true
+    }
+}
+```
+
+And now in your App struct, use the UIApplicationDelegateAdaptor property wrapper to tell SwiftUI it should use your AppDelegate class for the application delegate:
+
+```swift
+.@main
+struct YourApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    ...
+}
+```
+
+### Ask SpikeSDK for background delivery
+
+To enable background delivery, you need to call the enableBackgroundDelivery method:
+
+```swift
+do {
+    try await spikeConnection.enableBackgroundDelivery(
+        forStatisticsTypes: [.steps]
+    )
+} catch {
+    print("\(error)")
+}
+```
+
+Calling enableBackgroundDelivery will overwrite all the previous settings, so you have to call it with all the data types that you want in one call. It accepts all the possible data types that can be delivered in the background (statistics, records, activities and sleep).
+
+```swift
+func enableBackgroundDelivery(
+    forStatistics: [StatisticsType]?,
+    forMetrics: [MetricType]?,
+    forActivities: [ActivityConfig]?,
+    forSleep: [SleepConfig]?
+) async throws
+
+or
+
+public struct BackgroundDeliveryConfig: Codable, Hashable, Sendable {
+    public var statisticsTypes: [StatisticsType]?
+    public var metricsTypes: [MetricType]?
+    public var activityConfigs: [ActivityConfig]?
+    public var sleepConfigs: [SleepConfig]?
+}
+```
+
+You can also call getBacgroundDeliveryConfig() to get the current configuration and disableBacgroundDelivery() to disable background delivery. 

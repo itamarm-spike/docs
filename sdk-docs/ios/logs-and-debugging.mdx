@@ -1,0 +1,24 @@
+---
+title: "Logs and Debugging"
+---
+
+To receive logs from SpikeSDK, use the following code:
+
+```swift
+Spike.setLogCallback { level, message in
+    print("\(message)")
+}
+```
+
+If you are using background delivery, ensure this code runs in your application's `didFinishLaunchingWithOptions` method before you start using SpikeSDK:
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    ...
+    Spike.setLogCallback { level, message in
+        print("\(message)")
+    }
+    Spike.configure()
+    ...
+}
+``` 
